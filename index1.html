@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Зефирный хвостик — авторский зефир ручной работы и натуральные сладости в Москве.">
+    <title>Зефирный хвостик — сладкий мир на кончике языка!</title>
+<style>
+/* Базовые настройки и переменные */
+:root {
+    --primary-pink: #fec8d8;
+    --primary-mint: #a8e6cf;
+    --accent-white: #ffffff;
+    --text-dark: #333333;
+    --text-light: #666666;
+    --accent-shadow: rgba(0, 0, 0, 0.1);
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+    scroll-padding-top: 90px;
+}
+
+/* Сброс стилей */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--accent-white);
+    scroll-behavior: smooth;
+}
+
+/* Фиксированное меню */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid var(--primary-pink);
+    padding: 1rem 5%;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+.nav-links a {
+    margin-left: 2rem;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary-pink);
+}
+
+/* Кнопка мобильного меню */
+.menu-toggle {
+    display: none;
+    border: none;
+    background: var(--primary-pink);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    line-height: 1;
+    color: var(--text-dark);
+    cursor: pointer;
+}
+
+.menu-toggle:hover {
+    filter: brightness(0.95);
+}
+
+/* Главный экран */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary-pink) 0%, var(--primary-mint) 100%);
+    padding: 0 5%;
+}
+
+.hero-content {
+    max-width: 800px;
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(90deg, #ff6b6b, #feca57);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--accent-white);
+}
+
+.btn-primary {
+    background: var(--accent-white);
+    color: var(--text-dark);
+    padding: 15px 40px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 20px var(--accent-shadow);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 30px var(--accent-shadow);
+}
+
+/* Разделы */
+.section {
+    padding: 80px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: var(--primary-pink);
+    border-radius: 2px;
+}
+
+/* О компании */
+.about-text {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+/* Галерея товаров */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.card {
+    background: var(--accent-white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px var(--accent-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInUp 0.6s ease-out both;
+}
+
+.card:nth-child(2) { animation-delay: 0.1s; }
+.card:nth-child(3) { animation-delay: 0.2s; }
+.card:nth-child(4) { animation-delay: 0.3s; }
+.card:nth-child(5) { animation-delay: 0.4s; }
+.card:nth-child(6) { animation-delay: 0.5s; }
+.card:nth-child(7) { animation-delay: 0.6s; }
+.card:nth-child(8) { animation-delay: 0.7s; }
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px var(--accent-shadow);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.card h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.card p {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.price {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+/* Акция */
+.promo-card {
+    background: linear-gradient(45deg, var(--primary-pink), #ffd1dc);
+    border-radius: 25px;
+    padding: 3rem;
+    text-align: center;
+    color: var(--text-dark);
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.promo-card::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 150px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+}
+
+.promo-card h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Контакты */
+.contact-info {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.contact-details {
+    background: var(--accent-white);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px var(--accent-shadow);
+}
+
+.contact-details h3 {
+    margin-bottom: 1.5rem;
+}
+
+.contact-item {
+    margin-bottom: 1.5rem;
+}
+
+.contact-item strong {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: var(--text-dark);
+}
+
+.social-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-btn {
+    padding: 12px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.social-btn.whatsapp {
+    background: #25D366;
+    color: white;
+}
+
+.social-btn.vk {
+    background: #4a76a8;
+    color: white;
+}
+
+.social-btn:hover {
+    transform: scale(1.05);
+}
+
+.map-container {
+    width: 100%;
+    height: 300px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px var(--accent-shadow);
+}
+
+/* Футер */
+footer {
+    background: var(--text-dark);
+    color: var(--accent-white);
+    text-align: center;
+    padding: 2rem;
+}
+
+/* Анимации */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section.animated .card,
+.section.animated h2,
+.section.animated .about-text,
+.section.animated .promo-card {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.section.animated.in-view .card,
+.section.animated.in-view h2,
+.section.animated.in-view .about-text,
+.section.animated.in-view .promo-card {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        padding: 0.5rem 5% 1.5rem;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--primary-pink);
+        box-shadow: 0 12px 18px var(--accent-shadow);
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        margin-left: 0;
+        padding: 0.8rem 0;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .btn-primary {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+    
+    .section {
+        padding: 60px 5%;
+    }
+    
+    .promo-card {
+        padding: 2rem;
+    }
+    
+    .promo-card h3 {
+        font-size: 1.5rem;
+    }
+}
+</style>
+</head>
+<body>
+<nav>
+    <div class="nav-container">
+        <div class="logo">Зефирный хвостик</div>
+        <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-links">☰</button>
+        <div class="nav-links" id="nav-links">
+            <a href="#about">О нас</a>
+            <a href="#menu">Товары</a>
+            <a href="#promo">Акция</a>
+            <a href="#contact">Контакты</a>
+        </div>
+    </div>
+</nav><header class="hero" id="home">
+    <div class="hero-content">
+        <h1>Сладкий мир на кончике языка!</h1>
+        <p>Авторский зефир ручной работы, который тает во рту и дарит улыбку.</p>
+        <button class="btn-primary" onclick="document.getElementById('menu').scrollIntoView({behavior: 'smooth'})">Посмотреть товары</button>
+    </div>
+</header><section class="section" id="about">
+    <h2>О нас</h2>
+    <p class="about-text">«Зефирный хвостик» — это уютная кондитерская в Москве, где мы уже 3 года создаем воздушный зефир и нежные сладости. Мы верим, что десерт должен быть не только вкусным, но и полезным. Поэтому мы используем только натуральные ингредиенты: отборные яблоки, свежие ягоды, настоящий агар-агар и никаких искусственных красителей. 
+        <br><br>
+        Наша фишка — авторские вкусы и воздушная текстура. Для вас работает удобная доставка по всему городу. Загляните в гости, чтобы лично убедиться: счастье действительно можно купить!</p>
+</section><section class="section animated" id="menu">
+    <h2>Наша сладкая галерея</h2>
+    <div class="gallery">
+        <div class="card">
+            <img src="https://via.placeholder.com/400x200/FFB6C1/FFFFFF?text=Клубничный+зефир" alt="Клубничный зефир">
+            <div class="card-content">
+                <h3>Зефир «Розовое облако»</h3>
+                <p>С добавлением свежей клубники</p>
+                <div class="price">250 ₽</div>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/400x200/98FF98/000000?text=Мятный+зефир" alt="Мятный зефир">
+            <div class="card-content">
+                <h3>Зефир «Мятная свежесть»</h3>
+                <p>С кусочками настоящего шоколада</p>
+                <div class="price">250 ₽</div>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/400x200/FFDAB9/000000?text=Лимонный+зефир" alt="Лимонный зефир">
+            <div class="card-content">
+                <h3>Зефир «Солнечный зайчик»</h3>
+                <p>Лимонный с меренговой шапочкой</p>
+                <div class="price">280 ₽</div>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/400x200/DDA0DD/FFFFFF?text=Лавандовый+зефир" alt="Лавандовый зефир">
+            <div class="card-content">
+                <h3>Зефир «Лавандовый сон»</h3>
+                <p>Нежный цветочный аромат</p>
+                <div class="price">300 ₽</div>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/400x200/87CEEB/FFFFFF?text=Облако+суфле" alt="Суфле">
+            <div class="card-content">
+                <h3>Суфле «Воздушный поцелуй»</h3>
+                <p>Ванильное, в форме сердца</p>
+                <div class="price">180 ₽</div>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/400x200/FF69B4/FFFFFF?text=Малина+в+шоколаде" alt="Малина в шоколаде">
+            <div class="card-content">
+                <h3>Десерт «Ягодный взрыв»</h3>
+                <p>Свежая малина в белом шоколаде</p>
+                <div class="price">350 ₽</div>
+            </div>
+        </div>
+    </div>
+</section><section class="section animated" id="promo">
+    <div class="promo-card">
+        <h3>🎂 Акция месяца! 🎂</h3>
+        <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">Купи два зефира — третий в подарок!</p>
+        <p>Выбирайте любые вкусы из нашей галереи. Подарочный зефир добавим в коробку автоматически при заказе от двух штук.</p>
+    </div>
+</section><section class="section animated" id="contact">
+    <h2>Приходите в гости!</h2>
+    <div class="contact-info">
+        <div class="contact-details">
+            <div class="contact-item">
+                <strong>Адрес</strong>
+                <p>г. Москва, ул. Сладкая, д. 1, м. «Мармеладная»</p>
+            </div>
+            <div class="contact-item">
+                <strong>Телефон</strong>
+                <p>+7 (495) 123-45-67</p>
+            </div>
+            <div class="contact-item">
+                <strong>Режим работы</strong>
+                <p>Ежедневно с 10:00 до 22:00</p>
+            </div>
+            <div class="social-buttons">
+                <a href="https://wa.me/74951234567" class="social-btn whatsapp" target="_blank">WhatsApp</a>
+                <a href="https://vk.com/zefirniy_hvostik" class="social-btn vk" target="_blank">VK</a>
+            </div>
+        </div>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.293322222222!2d37.6176!3d55.7558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a5b0d0d0d0d%3A0x0!2zNTXCsDQ1JzM0LjAiTiAzN8KwMzgnMDIuMiJF!5e0!3m2!1sru!2sru!4v1696900000000!5m2!1sru!2sru" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</section><footer>
+    <p>&copy; 2026 Кондитерская «Зефирный хвостик». Сделано с любовью и агар-агаром.</p>
+</footer><script>
+// Мобильное меню
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+menuToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+    menuToggle.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
+    menuToggle.textContent = isOpen ? '×' : '☰';
+});
+
+// Закрываем меню после перехода к разделу
+navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Открыть меню');
+        menuToggle.textContent = '☰';
+    });
+});
+
+// Анимация появления блоков при скролле
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.animated').forEach(el => {
+    observer.observe(el);
+});
+</script>
+</body>
+</html>
