@@ -346,18 +346,20 @@ footer {
     }
 }
 
-.section.animated .card,
-.section.animated h2,
-.section.animated .about-text,
-.section.animated .promo-card {
+/* Скрытое состояние применяется только при работающем JS.
+   Класс js добавляет скрипт — без JavaScript контент остаётся видимым. */
+html.js .section.animated .card,
+html.js .section.animated h2,
+html.js .section.animated .about-text,
+html.js .section.animated .promo-card {
     opacity: 0;
     transform: translateY(30px);
 }
 
-.section.animated.in-view .card,
-.section.animated.in-view h2,
-.section.animated.in-view .about-text,
-.section.animated.in-view .promo-card {
+html.js .section.animated.in-view .card,
+html.js .section.animated.in-view h2,
+html.js .section.animated.in-view .about-text,
+html.js .section.animated.in-view .promo-card {
     animation: fadeInUp 0.8s ease-out forwards;
 }
 
@@ -536,6 +538,9 @@ footer {
 </section><footer>
     <p>&copy; 2026 Кондитерская «Зефирный хвостик». Сделано с любовью и агар-агаром.</p>
 </footer><script>
+// Флаг для CSS: скрытые состояния анимаций включаются только при работающем JS
+document.documentElement.classList.add('js');
+
 // Мобильное меню
 const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
@@ -563,17 +568,25 @@ const observerOptions = {
     rootMargin: '0px 0px -50px 0px'
 };
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-        }
-    });
-}, observerOptions);
+if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
 
-document.querySelectorAll('.animated').forEach(el => {
-    observer.observe(el);
-});
+    document.querySelectorAll('.animated').forEach(el => {
+        observer.observe(el);
+    });
+} else {
+    // Подстраховка для старых браузеров — показываем секции сразу
+    document.querySelectorAll('.animated').forEach(el => {
+        el.classList.add('in-view');
+    });
+}
 </script>
 </body>
 </html>
